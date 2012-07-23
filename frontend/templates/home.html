@@ -1,18 +1,29 @@
 {% extends "root.html" %}
 {% block content %}
-<form method="post" action='/stories' enctype="multipart/form-data">
-    <input type="hidden" name="lat" value="{{ default_lat }}"/>
-    <input type="hidden" name="lon" value="{{ default_lon }}"/>
-    <div class="field">
-        <input type="text" name="uploader" placeholder="Uploader Name" />
-    </div>
-    <div class="field">
-        <textarea name="desc" placeholder="Your Story"></textarea>
-    </div>
-    <div class="field">
-        <input type="file" name="file1" />
-    </div>
-    <button type="submit">Upload</button>
-</form>
 
+<div id="add_story">
+    You are at <strong id="lat_display">{{ default_lat }} Lattitude</strong> and <strong id="lon_display">{{ default_lon }} Longitude</strong>
+    <form method="post" action='/stories' enctype="multipart/form-data">
+        <input type="hidden" name="lat" value="{{ default_lat }}"/>
+        <input type="hidden" name="lon" value="{{ default_lon }}"/>
+        <div class="field">
+            <input type="text" name="uploader" placeholder="Uploader Name" />
+        </div>
+        <div class="field">
+            <textarea name="desc" placeholder="Your Story"></textarea>
+        </div>
+        <div class="field">
+            <input type="file" name="file1" />
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+</div>
+
+
+<div id="story_list">
+    <h3>Stories at your location</h3>
+    <ul>
+
+    </ul>
+</div>
 {% endblock content %}
