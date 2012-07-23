@@ -14,3 +14,5 @@ Modules are as follows:
 * `search` will eventually contain a parallelized search to crawl through story descriptions, tags and files. 
 
 The app is intended as a proof of concept
+
+Obviously the application directory needs to be on the PYTHONPATH to run.
