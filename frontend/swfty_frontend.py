@@ -1,10 +1,12 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,abort
 from werkzeug.wrappers import Request,Response
 from models.story import Story
 from models.shared import HERE_LAT,HERE_LON
 import json
 from json_encoder import Encoder
 from bson.objectid import ObjectId
+from StringIO import StringIO
+import Image
 
 app = Flask(__name__)
 
@@ -48,4 +50,35 @@ def stories():
 def image(image_id):
     grid = Story.getgridfs()
     file_obj = grid.get(ObjectId(image_id))
+    if file_obj.content_type not in ['image/jpeg','image/png']:
+        abort(400)
+
+    if request.values.get('thumb',None):
+        file_obj = resize_image(file_obj,(120,120))
     return Response(file_obj,mimetype=file_obj.content_type)
+
+def resize_image(image,size=(800,600)):
+    im = Image.open(image)
+    output_buff = StringIO()
+    width,height = im.size
+
+    if width > height:
+        delta = width-height
+        left = int(delta/2)
+        upper = 0
+        right = height+left
+        lower = height
+    else:
+        delta = height-width
+        left = 0
+        upper = int(delta/2)
+        right = width
+        lower = width+upper
+    
+    im.thumbnail(size, Image.ANTIALIAS)
+
+    im.convert('RGB').save(output_buff, format = 'jpeg', quality=100)
+    output_buff.seek(0)
+    output_buff.content_type = 'image/jpeg'
+    return output_buff
+

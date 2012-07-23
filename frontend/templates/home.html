@@ -1,6 +1,5 @@
 {% extends "root.html" %}
 {% block content %}
-
 <div id="add_story">
     You are at <strong id="lat_display">{{ default_lat }} Lattitude</strong> and <strong id="lon_display">{{ default_lon }} Longitude</strong>
     <form method="post" action='/stories' enctype="multipart/form-data">
@@ -19,11 +18,9 @@
     </form>
 </div>
 
-
 <div id="story_list">
     <h3>Stories at your location</h3>
     <ul>
-
     </ul>
 </div>
 {% endblock content %}
