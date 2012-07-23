@@ -4,8 +4,22 @@ from models.story import Story
 from models.shared import HERE_LAT,HERE_LON
 import json
 from json_encoder import Encoder
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
+
+def getstories(lat,lon,dist=10,limit=200):
+        stories = Story.collection.find({'loc':{'$maxDistance':dist,'$near':[lat,lon]}}).limit(limit)
+        output = []
+        for s in stories:
+            files = s.get_files()
+            s.file_data = []
+            print files
+            for f in files:
+                s.file_data.append({'_id':f._id,'mimetype':f.content_type,'size':f.length})
+                print s
+            output.append(s)
+        return output
 
 @app.route('/')
 def root():
@@ -27,5 +41,11 @@ def stories():
         #browse stories
         lat = float(request.values.get('lat',HERE_LAT))
         lon = float(request.values.get('lon',HERE_LON))
-        stories = Story.collection.find({'loc':{'$maxDistance':10,'$near':[lat,lon]}}).limit(200)
-        return Response([json.dumps({'stories':[s for s in stories]},cls=Encoder)],mimetype='application/json')
+        stories = getstories(lat,lon)
+        return Response([json.dumps({'stories':stories},cls=Encoder)],mimetype='application/json')
+
+@app.route('/image/<string:image_id>')
+def image(image_id):
+    grid = Story.getgridfs()
+    file_obj = grid.get(ObjectId(image_id))
+    return Response(file_obj,mimetype=file_obj.content_type)
