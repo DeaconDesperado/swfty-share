@@ -1,3 +1,4 @@
+"""This module contains the frontend Flask app that will serve HTML output in the browser and handle form submissions via regular HTTP"""
 from flask import Flask,render_template,request,abort
 from werkzeug.wrappers import Request,Response
 from models.story import Story
@@ -11,17 +12,18 @@ import Image
 app = Flask(__name__)
 
 def getstories(lat,lon,dist=10,limit=200):
-        stories = Story.collection.find({'loc':{'$maxDistance':dist,'$near':[lat,lon]}}).limit(limit)
-        output = []
-        for s in stories:
-            files = s.get_files()
-            s.file_data = []
-            print files
-            for f in files:
-                s.file_data.append({'_id':f._id,'mimetype':f.content_type,'size':f.length})
-                print s
-            output.append(s)
-        return output
+    """Find all the stories in a given radius from a point"""
+    stories = Story.collection.find({'loc':{'$maxDistance':dist,'$near':[lat,lon]}}).limit(limit)
+    output = []
+    for s in stories:
+        files = s.get_files()
+        s.file_data = []
+        print files
+        for f in files:
+            s.file_data.append({'_id':f._id,'mimetype':f.content_type,'size':f.length})
+            print s
+        output.append(s)
+    return output
 
 @app.route('/')
 def root():
@@ -30,6 +32,7 @@ def root():
 
 @app.route('/stories',methods=['GET','POST'])
 def stories():
+    """Submit a new story/file if post, output those in range if get"""
     if request.method == 'POST':
         #save a story
         uploader = request.values.get('uploader')
@@ -48,6 +51,7 @@ def stories():
 
 @app.route('/image/<string:image_id>')
 def image(image_id):
+    """Content rendered endpt for image mimetypes"""
     grid = Story.getgridfs()
     file_obj = grid.get(ObjectId(image_id))
     if file_obj.content_type not in ['image/jpeg','image/png']:
@@ -58,6 +62,7 @@ def image(image_id):
     return Response(file_obj,mimetype=file_obj.content_type)
 
 def resize_image(image,size=(800,600)):
+    """Utility function to make thumbnails of images"""
     im = Image.open(image)
     output_buff = StringIO()
     width,height = im.size
