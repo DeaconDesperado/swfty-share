@@ -1,2 +1,4 @@
 MONGO_URI = 'mongodb://173.220.194.84:27017'
 MONGO_DATABASE = 'swfty_staging'
+HERE_LAT = 41.2
+HERE_LON = -73.0183

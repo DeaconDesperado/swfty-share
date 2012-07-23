@@ -8,6 +8,7 @@ __date__ ="$Nov 30, 2011 8:50:18 AM$"
 
 from datetime import datetime
 import json
+from models.story import Story
 try:
     from pymongo.objectid import ObjectId
 except ImportError:
@@ -22,8 +23,7 @@ class Encoder(json.JSONEncoder):
             return obj.strftime(fmt)
         elif isinstance(obj,ObjectId):
             return str(obj)
+        elif isinstance(obj,Story):
+            return dict(obj)
 
 
-
-if __name__ == "__main__":
-    print "Hello World";

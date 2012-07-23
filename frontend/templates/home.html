@@ -1,4 +1,18 @@
 {% extends "root.html" %}
 {% block content %}
-    Homepage
+<form method="post" action='/stories' enctype="multipart/form-data">
+    <input type="hidden" name="lat" value="{{ default_lat }}"/>
+    <input type="hidden" name="lon" value="{{ default_lon }}"/>
+    <div class="field">
+        <input type="text" name="uploader" placeholder="Uploader Name" />
+    </div>
+    <div class="field">
+        <textarea name="desc" placeholder="Your Story"></textarea>
+    </div>
+    <div class="field">
+        <input type="file" name="file1" />
+    </div>
+    <button type="submit">Upload</button>
+</form>
+
 {% endblock content %}
