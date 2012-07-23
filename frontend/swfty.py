@@ -5,5 +5,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return render_template('root.html')
+    """render out homepage, where user can upload a file or search existing"""
+    return render_template('home.html')
 
