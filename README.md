@@ -6,4 +6,11 @@ The browser frontend uses the HTML5 geolocation API to detect the client's locat
 
 Also included is a Twisted transfer protocol `protocols/transfer/transfer.py` This protocol is intended to receive asynchronous file uploads for stories via mobile devices.
 
+Modules are as follows:
 
+* `frontend` contains the Flask frontend that will render html to regular browsers and handle HTTP form posts for stories
+* `protocols` define custom client and transfer protocols to be implemented by mobile devices to add files to stories
+* `models` contains the core program models for stories and files built for MongoDB
+* `search` will eventually contain a parallelized search to crawl through story descriptions, tags and files. 
+
+The app is intended as a proof of concept
