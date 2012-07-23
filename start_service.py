@@ -1,4 +1,4 @@
-from swfty.frontend.swfty import app
+from swfty.frontend.swfty_frontend import app
 from werkzeug.serving import run_simple
 
 application = app

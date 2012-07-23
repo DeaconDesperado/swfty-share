@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request
 from werkzeug.wrappers import Request,Response
+from models.story import Story
 
 app = Flask(__name__)
 
