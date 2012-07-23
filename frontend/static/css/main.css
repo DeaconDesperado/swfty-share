@@ -1,0 +1,22 @@
+body
+{
+    background-color:#E8C061;
+}
+
+form .field
+{
+    display:block;
+    margin-bottom:8px;
+}
+
+input[type=text], textarea
+{
+    width:280px;
+    padding:12px;
+    border-radius:8px;
+}
+
+textarea
+{
+    height:180px;
+}
