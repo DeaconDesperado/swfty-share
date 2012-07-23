@@ -4,6 +4,9 @@ from twisted.web import proxy
 from twisted.internet import reactor,protocol
 from twisted.python import log
 import sys
+import json
+from swfty.models.story import Story
+from bson.objectid import ObjectId
 
 log.startLogging(sys.stdout)
 
@@ -25,10 +28,15 @@ class TransferProtocol(protocol.Protocol):
 
     def open(self,data):
         print 'OPEN %s' % data
+        self.file_spec = json.loads(data)
+        self.story_id = self.file_spec['story_id']
         self.transport.write('ELLO')
 
     def endfile(self,data):
         print 'END %s' % data
+        self.fileObject.seek(0)
+        story = Story.collection.find({'_id':ObjectId(self.story_id)})
+        story.save_file(self.fileObject)
         self.transport.loseConnection()
 
     def upload(self,data):
