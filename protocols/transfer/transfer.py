@@ -1,3 +1,5 @@
+"""This module defines the twisted protocol that will incrementally accept files from the client device"""
+
 from twisted.web import proxy
 from twisted.internet import reactor,protocol
 from twisted.python import log

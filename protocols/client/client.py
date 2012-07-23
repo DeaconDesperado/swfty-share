@@ -11,6 +11,8 @@ import os
 
 log.startLogging(sys.stdout)
 
+TEST_DATA = '/home/mark/projects/swfty/test.csv'
+
 class ClientProtocol(protocol.Protocol):
 
     def connectionMade(self):
@@ -19,8 +21,8 @@ class ClientProtocol(protocol.Protocol):
             'lat':43.78,
             'lon':-72.5831
         },cls=Encoder)
-        self.fileObject = open('test.csv')
-        self.totalSize = os.stat('test.csv').st_size
+        self.fileObject = open(TEST_DATA)
+        self.totalSize = os.stat(TEST_DATA).st_size
         self.uploaded = 0
 
     def start(self):
