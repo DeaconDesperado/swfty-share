@@ -1,28 +1,9 @@
 {% extends "root.html" %}
 {% block content %}
-<div id="add_story">
-	You are at <strong id="lat_display">{{ default_lat }} Lattitude</strong> and <strong id="lon_display">{{ default_lon }} Longitude</strong>
-	<form method="post" action='/stories' enctype="multipart/form-data">
-		<input type="hidden" name="lat" value="{{ default_lat }}"/>
-		<input type="hidden" name="lon" value="{{ default_lon }}"/>
-
-		<div class="field">
-			<input type="text" name="uploader" placeholder="Your name" />
-		</div>
-
-		<div class="field">
-			<textarea name="desc" placeholder="Your Swft story"></textarea>
-		</div>
-
-		<div class="field add-file">
-			<input type="file" name="file1" />
-		</div>
-		<button type="submit">Upload</button>
-	</form>
-</div>
-
-<div id="story_list">
-	<h3>Stories at your location</h3>
-	<ul></ul>
+<div id="story-collection">
+	<div id="content" class="nudge-l">
+		<h3>Stories at your location</h3>
+		<ul></ul>
+	</div>
 </div>
 {% endblock content %}

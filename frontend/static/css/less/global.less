@@ -1,53 +1,86 @@
 @import 'presets.less';
 
 body {
-	background: @slate;
-	font: normal 16px/16px @arial;
-	margin: 0 30px;
-}
-
-.field {
-	display:block;
-	padding: 4px 0;
-}
-
-input[type=text], input[type=email], input[type=password], input[type=url], textarea {
-	background: lighten(@slate,33%);
-	border: 2px solid darken(@slate,8%);
-	box-shadow: inset 2px 2px 1px rgba(0,0,0,0.1);
-	color: #555;
-	.corner(5px);
-	font: 14px/18px @arial;
-	outline: none;
-	padding: 8px;
-	.transition(all 0.1s linear);
-	min-width: 200px;
-
-	&:focus {
-		background: #fff;
-		color: #222;
-	}
-}
-
-textarea {resize: vertical;}
-
-.add-file {
-	background: @slate-dark;
-	color: #fff;
-	.corner(5px);
-	display: inline-block;
-	padding: 8px;
-}
-
-.contain {
-	margin: 0 auto;
-	width: 960px;
+	background: #fff;
+	color: #333;
+	font: normal 16px/20px @arial;
 }
 
 .clr {clear: both;}
 
+.explain {
+	border-bottom: 1px dotted #fff;
+	cursor: default;
+	display: inline-block;
+}
+
+#dash {
+	background: @offwhite;
+	height: 100%;
+	text-align: right;
+	position: fixed; top: 0; left: 0;
+	width: 33%;
+}
+
+.nudge-r {
+	float: right;
+	text-align: left;
+	width: 317px;
+}
+
+.nudge-l {
+	float: left;
+	text-align: left;
+	width: 643px;
+}
 
 
+
+
+
+/* objects >> */
+.txt-loud {
+	font: 20px/24px @arial;
+}
+
+.txt-soft {
+	font: 13px/17px @arial;
+}
+/* << objects */
+
+
+
+/* form elements >> */
+form {
+}
+
+.field {
+	padding: 4px;
+}
+
+input[type=text], input[type=email], input[type=password], input[type=url], textarea {
+	background: #fff;
+	border: 1px solid darken(@offwhite,13%);
+	color: #666;
+	.corner(5px);
+	font: 16px/20px @arial;
+	outline: none;
+	margin: 0;
+	padding: 8px;
+	.transition(all 0.1s linear);
+	min-width: 240px;
+
+	&:focus {
+		border-color: navy;
+		color: #222;
+	}
+}
+
+textarea {
+	min-height: 100px;
+	resize: vertical;
+}
+/* << form elements */
 
 
 
@@ -59,18 +92,10 @@ textarea {resize: vertical;}
 h1 {
 	background: transparent url('../../images/swfty-logo.png') center center no-repeat;
 	display: inline-block;
-	float: left;
 	height: 38px;
 	width: 92px;
 
 	span {display: none;}
-}
-
-.split {
-	border: 3px solid lighten(@slate,7%); border-width: 3px 0;
-	.corner(3px);
-	height: 0;
-	margin: 0;
 }
 /* << header */
 
@@ -80,25 +105,12 @@ h1 {
 
 
 
-#add_story, #story_list
-{
-    float:left;
-
+#story-add {
+	position: relative;
 }
 
-#add_story
-{
-    width:30%;
-}
+#story-collection {
+	margin-left: 33%;
 
-#story_list {
-	background: @yellow;
-	width:60%;
-}
-
-button
-{
-    padding:8px 12px;
-    font-weight:bold;
-    border-radius:8px;
+	li {padding:15px;}
 }

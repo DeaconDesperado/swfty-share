@@ -1,6 +1,6 @@
 $(function(){
 
-    var $story_list = $('#story_list ul');
+    var $story_list = $('#story-collection ul');
     var lat;
     var lon;
 
