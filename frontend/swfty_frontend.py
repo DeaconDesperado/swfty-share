@@ -61,6 +61,10 @@ def image(image_id):
         file_obj = resize_image(file_obj,(120,120))
     return Response(file_obj,mimetype=file_obj.content_type)
 
+@app.route('/location_fail')
+def location_fail():
+    return Reponse('You must have geolocation enabled to use the app')
+
 def resize_image(image,size=(800,600)):
     """Utility function to make thumbnails of images"""
     im = Image.open(image)
