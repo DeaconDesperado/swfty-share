@@ -4,11 +4,20 @@ $(function(){
     var lat;
     var lon;
 
-    function getCoords(){
+    function geoLocate(){
+        navigator.geolocation.getCurrentPosition(getCoords)
+    }
+
+    function getCoords(position){
         //do geolcation here, then send the coords
         //This could be a js deferred thingy, right TDawg? Like get coords, then go on to getList
-        lat = parseFloat($('input[name="lat"]')[0].value);
-        lon = parseFloat($('input[name="lon"]')[0].value);
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        $('input[name="lat"]').val(lat)
+        $('input[name="lon"]').val(lon)
+        $('#lat_display').html(lat)
+        $('#lon_display').html(lon)
+        getList();
     }
 
     function getList(){
@@ -37,7 +46,5 @@ $(function(){
         $story_list.html(markup);
     }
 
-    getCoords();
-    getList();
-
+    geoLocate();
 })
