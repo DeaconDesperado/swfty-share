@@ -18,10 +18,8 @@ def getstories(lat,lon,dist=10,limit=200):
     for s in stories:
         files = s.get_files()
         s.file_data = []
-        print files
         for f in files:
             s.file_data.append({'_id':f._id,'mimetype':f.content_type,'size':f.length})
-            print s
         output.append(s)
     return output
 
