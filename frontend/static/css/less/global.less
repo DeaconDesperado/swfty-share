@@ -1,0 +1,46 @@
+@import 'presets.less';
+
+body {
+	background: #E8C061;
+	font: normal 16px/16px @arial;
+}
+
+.field {
+	display:block;
+}
+
+input[type=text], input[type=email], input[type=password], input[type=url], textarea {
+	background: #fff;
+	border: 1px solid rgba(0,0,0,0.5);
+	box-shadow: inset 2px 2px 1px #ddd;
+	.corner(3px);
+	outline: none;
+	padding: 5px;
+}
+
+textarea {
+	resize: vertical;
+}
+
+#add_story, #story_list
+{
+    float:left;
+
+}
+
+#add_story
+{
+    width:30%;
+}
+
+#story_list
+{
+    width:60%;
+}
+
+button
+{
+    padding:8px 12px;
+    font-weight:bold;
+    border-radius:8px;
+}

@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script type="text/javascript" src="/static/js/main.js"></script>
-        {% block title  %}
-        {% endblock %}
-    </head>
-    <body>
-        <div id="header">
-            <h1>Swfty</h1>
-            <h2>Simple geo file sharing</h2>
-        </div>
-        {% block content %}
-        {% endblock %}
-    </body>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet/less" type="text/css" href="/static/css/less/global.less">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/main.js"></script>
+	<script type="text/javascript" src="/static/js/less.js"></script>
+	{% block title  %}
+	{% endblock %}
+</head>
+<body>
+
+<div id="header">
+	<h1>swfty</h1>
+	<h2>Simple geo file sharing</h2>
+</div>
+
+{% block content %}
+{% endblock %}
+
+</body>
 </html>
