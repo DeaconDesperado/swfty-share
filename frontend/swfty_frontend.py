@@ -18,10 +18,8 @@ def getstories(lat,lon,dist=10,limit=200):
     for s in stories:
         files = s.get_files()
         s.file_data = []
-        print files
         for f in files:
             s.file_data.append({'_id':f._id,'mimetype':f.content_type,'size':f.length})
-            print s
         output.append(s)
     return output
 
@@ -60,6 +58,19 @@ def image(image_id):
     if request.values.get('thumb',None):
         file_obj = resize_image(file_obj,(120,120))
     return Response(file_obj,mimetype=file_obj.content_type)
+
+@app.route('/audio/<string:audio_id>')
+def audio(image_id):
+    """Content rendered endpt for audio mimetypes"""
+    grid = Story.getgridfs()
+    file_obj = grid.get(ObjectId(audio_id))
+    if file_obj.content_type not in ['audio/mp3']:
+        abort(400)
+    return Response(file_obj,mimetype=file_obj.content_type)
+
+@app.route('/location_fail')
+def location_fail():
+    return Reponse('You must have geolocation enabled to use the app')
 
 def resize_image(image,size=(800,600)):
     """Utility function to make thumbnails of images"""

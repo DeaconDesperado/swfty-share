@@ -1,8 +1,9 @@
 @import 'presets.less';
 
 body {
-	background: #E8C061;
+	background: @slate;
 	font: normal 16px/16px @arial;
+	margin: 0 30px;
 }
 
 .field {
@@ -10,25 +11,66 @@ body {
 }
 
 input[type=text], input[type=email], input[type=password], input[type=url], textarea {
-	background: #fff;
-	border: 1px solid rgba(0,0,0,0.5);
-	box-shadow: inset 2px 2px 1px #ddd;
-	.corner(3px);
+	background: #eee;
+	border: 1px solid @slate-dark; border-color: @slate-dark darken(@slate,5%) darken(@slate,5%) @slate-dark;
+	box-shadow: inset 2px 2px 0 #ddd;
+	color: #555;
+	.corner(5px);
+	font: 14px/16px @arial;
 	outline: none;
-	padding: 5px;
+	padding: 8px;
+	.transition(all 0.1s linear);
+
+	&:focus {
+		background: #fff;
+		color: #222;
+	}
 }
 
 textarea {
 	resize: vertical;
 }
 
+.contain {
+	margin: 0 auto;
+	width: 960px;
+}
+
+.clr {clear: both;}
+
+
+
+
+
+
+/* header >> */
+#header {
+	padding: 16px 0;
+}
+
 h1 {
-	background: transparent url('../../images/swfty-logo.png') 0 0 no-repeat;
-	height: 60px;
-	width: 147px;
+	background: transparent url('../../images/swfty-logo.png') center center no-repeat;
+	display: inline-block;
+	float: left;
+	height: 38px;
+	width: 92px;
 
 	span {display: none;}
 }
+
+.split {
+	border: 3px solid lighten(@slate,6%); border-width: 3px 0;
+	.corner(3px);
+	height: 0;
+	margin: 0;
+}
+/* << header */
+
+
+
+
+
+
 
 #add_story, #story_list
 {
@@ -41,9 +83,9 @@ h1 {
     width:30%;
 }
 
-#story_list
-{
-    width:60%;
+#story_list {
+	background: @yellow;
+	width:60%;
 }
 
 button

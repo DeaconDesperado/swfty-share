@@ -1,3 +1,7 @@
+@yellow: #fff9cf;
+@slate: #81aab0;
+@slate-dark: darken(@slate,20%);
+
 @arial: Arial, Helvetica, sans-serif;
 
 .corner(@radius) {
@@ -5,4 +9,11 @@
 	-webkit-border-radius: @radius;
 	-o-border-radius: @radius;
 	border-radius: @radius;
+}
+
+.transition(@motion) {
+	-moz-transition: @motion;
+	-webkit-transition: @motion;
+	-o-transition: @motion;
+	transition: @motion;
 }
