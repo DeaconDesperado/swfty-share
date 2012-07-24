@@ -39,7 +39,7 @@ $(function(){
                 file = story['file_data'][ind];
                 if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png'){
                     var parsedFileTemplate = _.template(templates.file_list.image,file);
-                }else if(file.mimetype == 'audio/mpeg'){
+                }else if(file.mimetype == 'audio/mp3'){
                     var parsedFileTemplate = _.template(templates.file_list.audio,file);
                 }
                 fileListMarkup+=parsedFileTemplate;
