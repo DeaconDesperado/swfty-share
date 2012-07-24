@@ -8,18 +8,20 @@ body {
 
 .field {
 	display:block;
+	padding: 4px 0;
 }
 
 input[type=text], input[type=email], input[type=password], input[type=url], textarea {
-	background: #eee;
-	border: 1px solid @slate-dark; border-color: @slate-dark darken(@slate,5%) darken(@slate,5%) @slate-dark;
-	box-shadow: inset 2px 2px 0 #ddd;
+	background: lighten(@slate,33%);
+	border: 2px solid darken(@slate,8%);
+	box-shadow: inset 2px 2px 1px rgba(0,0,0,0.1);
 	color: #555;
 	.corner(5px);
-	font: 14px/16px @arial;
+	font: 14px/18px @arial;
 	outline: none;
 	padding: 8px;
 	.transition(all 0.1s linear);
+	min-width: 200px;
 
 	&:focus {
 		background: #fff;
@@ -27,8 +29,14 @@ input[type=text], input[type=email], input[type=password], input[type=url], text
 	}
 }
 
-textarea {
-	resize: vertical;
+textarea {resize: vertical;}
+
+.add-file {
+	background: @slate-dark;
+	color: #fff;
+	.corner(5px);
+	display: inline-block;
+	padding: 8px;
 }
 
 .contain {
@@ -59,7 +67,7 @@ h1 {
 }
 
 .split {
-	border: 3px solid lighten(@slate,6%); border-width: 3px 0;
+	border: 3px solid lighten(@slate,7%); border-width: 3px 0;
 	.corner(3px);
 	height: 0;
 	margin: 0;
