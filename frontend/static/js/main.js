@@ -31,19 +31,24 @@ $(function(){
     }
 
     function buildList(d,s,jqXHR){
-        var markup = '';
+        markup = ''
         $.each(d['stories'],function(ind){
             story = d['stories'][ind];
-            var line = '<li>Uploader: '+story.uploader;
-            line += 'Description: '+story.description;
+            var fileListMarkup = ''
             $.each(story['file_data'],function(ind){
                 file = story['file_data'][ind];
                 if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png'){
-                    line += '<img class="story_image" src="/image/'+file._id+'?thumb=1" />'
+                    var parsedFileTemplate = _.template(templates.file_list.image,file);
+                }else if(file.mimetype == 'audio/mpeg'){
+                    var parsedFileTemplate = _.template(templates.file_list.audio,file);
                 }
+                fileListMarkup+=parsedFileTemplate;
             });
-            line += '</li>'
-            markup += line;
+
+            story.filelist = fileListMarkup;
+
+            var parsedTemplate = _.template(templates.story_cell,story);
+            markup += parsedTemplate;
         });
         $story_list.html(markup);
     }
