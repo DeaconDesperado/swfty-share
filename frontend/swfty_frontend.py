@@ -60,7 +60,7 @@ def image(image_id):
     return Response(file_obj,mimetype=file_obj.content_type)
 
 @app.route('/audio/<string:audio_id>')
-def audio(image_id):
+def audio(audio_id):
     """Content rendered endpt for audio mimetypes"""
     grid = Story.getgridfs()
     file_obj = grid.get(ObjectId(audio_id))
