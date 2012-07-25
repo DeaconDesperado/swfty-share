@@ -1,6 +1,6 @@
 $(function(){
 
-    var $story_list = $('#story-collection ul');
+    var $story_list = $('#swft-collection ul');
     var lat;
     var lon;
 

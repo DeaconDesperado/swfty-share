@@ -2,7 +2,7 @@ var templates = {};
 
 templates.story_cell = ' \
                         <li class="story">\
-                            <span class="uploader"><%= uploader%></span> \
+                            <strong class="uploader"><%= uploader%></strong> \
                             <span class="desc"><%= description%></span> \
                             <%= filelist %> \
                         </li>\
