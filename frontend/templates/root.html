@@ -24,7 +24,7 @@
 			Longitude:  <strong class="explain" id="lon_display" title="This is your current longitude">{{ default_lon }} Longitude</strong>
 		</div>
 
-		<form method="post" action='/stories' enctype="multipart/form-data">
+		<form method="post" action='/stories' enctype="multipart/form-data" autocomplete="off">
 			<input type="hidden" name="lat" value="{{ default_lat }}"/>
 			<input type="hidden" name="lon" value="{{ default_lon }}"/>
 
