@@ -1,6 +1,8 @@
 @import 'presets.less';
 
 /* defaults >> */
+html {height: 100%;}
+
 body {
 	background: #fff;
 	color: #333;
@@ -59,7 +61,7 @@ textarea {
 
 button {
 	border: 0; 
-	box-shadow: inset 0 10px 20px rgba(255,255,255,0.2), 1px 1px 1px rgba(0,0,0,0.2);
+	box-shadow: inset 0 10px 20px rgba(255,255,255,0.2);
 	color: #fff;
 	.corner(2px);
 	cursor: pointer;
@@ -89,6 +91,7 @@ button[type="submit"]{
 	text-align: right;
 	position: fixed; top: 0; left: 0;
 	width: 33%;
+	z-index: 0;
 
 	.nudge {
 		float: right;
@@ -97,7 +100,12 @@ button[type="submit"]{
 }
 
 #swft-collection {
-	margin-left: 33%;
+	border-left: 1px solid darken(desaturate(@offwhite,5%),6%);
+	box-shadow: -5px 0 5px darken(desaturate(@offwhite,5%),3%), -1px 0 1px darken(desaturate(@offwhite,5%),8%);
+	height: 100%;
+	position: absolute; top: 0; right: 0;
+	width: 67%;
+	z-index: 1;
 
 	.nudge {
 		float: left;
@@ -130,15 +138,23 @@ h1 {
 
 /* #content >> */
 #content {
-	box-shadow: -5px 0 5px darken(desaturate(@offwhite,5%),3%), -1px 0 1px darken(desaturate(@offwhite,5%),8%);
-	position: relative;
-	z-index: 2;
+}
+
+h2 {
+	background: #444;
+	color: #ccc;
+	.corner(2px);
+	font: normal 14px/22px @arial;
+	margin: 5px;
+	padding: 10px;
+
+	strong {color: #fff;}
 }
 /* << #content */
 
 
 li.story {
-	border-top: 1px solid darken(desaturate(@offwhite,5%),10%);
-	margin: 0 0 0 25px;
+	border-left: 3px solid @sand;
+	margin: 10px 5px;
 	padding: 20px;
 }
