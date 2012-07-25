@@ -9,23 +9,45 @@
 	<script type="text/javascript" src="/static/js/main.js"></script>
 	<script type="text/javascript" src="/static/js/less.js"></script>
 	{% block title  %}
+	<title>Social Geo Story Sharing</title>
 	{% endblock %}
 </head>
 <body>
 
-<div id="header">
-	<div class="contain">
+<div id="swft-dash">
+
+	<div id="dashboard" class="nudge">
 		<h1><span>swfty</span></h1>
-		<div class="clr"></div>
-	</div>
+
+		<div class="txt-soft">
+			Lattitude: <strong class="explain" id="lat_display" title="This is your current lattitude">{{ default_lat }} Lattitude</strong> 
+			Longitude:  <strong class="explain" id="lon_display" title="This is your current longitude">{{ default_lon }} Longitude</strong>
+		</div>
+
+		<form method="post" action='/stories' enctype="multipart/form-data">
+			<input type="hidden" name="lat" value="{{ default_lat }}"/>
+			<input type="hidden" name="lon" value="{{ default_lon }}"/>
+
+			<div class="field">
+				<input type="text" name="uploader" placeholder="Your name" />
+			</div>
+
+			<div class="field">
+				<textarea name="desc" placeholder="Your Swft story"></textarea>
+			</div>
+
+			<div class="field">
+				<input type="file" name="file1" />
+			</div>
+
+			<button type="submit">Submit</button>
+			<div class="clr"></div>
+		</form>
+	</div><!-- /#story-dash -->
 </div>
 
-<hr class="split clr">
-
-<div class="contain">
-	{% block content %}
-	{% endblock %}
-</div>
+{% block content %}
+{% endblock %}
 
 </body>
 </html>
