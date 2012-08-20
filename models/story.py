@@ -1,15 +1,16 @@
 from minimongo import Model,Index
 import pymongo
 from gridfs import GridFS
-from swfty.models.shared import MONGO_URI,MONGO_DATABASE,HERE_LAT,HERE_LON
 from datetime import datetime
+from swfty.config import CONFIGURATION
+
 
 class Story(Model):
     """The base model for all geo stories"""
     class Meta:
-        database = MONGO_DATABASE
+        database = CONFIGURATION.MONGO_DB
         collection = 'stories'
-        host = MONGO_URI
+        host = CONFIGURATION.MONGO_URI
         indices = (
             Index([('loc',pymongo.GEO2D)]),
         )
