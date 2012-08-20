@@ -1,8 +1,12 @@
 $(function(){
-
-    var $story_list = $('#swft-collection ul');
-    var lat;
+		var page = 0;
     var lon;
+    var lat;
+    var $story_list = $('#swft-collection ul');
+		var listView = new infinity.ListView($story_list,{lazy:function(){
+			page++;
+			getList()
+		}});
 
     function geoLocate(){
         navigator.geolocation.getCurrentPosition(getCoords,locationDenied)
@@ -24,7 +28,7 @@ $(function(){
 
     function getList(){
         $.ajax({
-            url:'/stories?lat='+lat+'&lon='+lon,
+            url:'/stories?lat='+lat+'&lon='+lon+'&page='+page+'&per_page=10',
             dataType:'json',
             success:buildList
         })
@@ -34,7 +38,7 @@ $(function(){
         markup = ''
         $.each(d['stories'],function(ind){
             story = d['stories'][ind];
-            var fileListMarkup = ''
+						var fileListMarkup = '';
             $.each(story['file_data'],function(ind){
                 file = story['file_data'][ind];
                 if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png'){
@@ -48,9 +52,12 @@ $(function(){
             story.filelist = fileListMarkup;
 
             var parsedTemplate = _.template(templates.story_cell,story);
-            markup += parsedTemplate;
+            listView.append(parsedTemplate);
         });
-        $story_list.html(markup);
+
+
     }
-    geoLocate();
+    
+		geoLocate();
+
 })

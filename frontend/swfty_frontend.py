@@ -44,7 +44,9 @@ def stories():
         #browse stories
         lat = float(request.values.get('lat',HERE_LAT))
         lon = float(request.values.get('lon',HERE_LON))
-        stories = getstories(lat,lon)
+        page = int(request.values.get('page',0))
+        rpp = int(request.values.get('per_page',25))
+        stories = getstories(lat,lon)[(page*rpp):(page+1)*rpp]
         return Response([json.dumps({'stories':stories},cls=Encoder)],mimetype='application/json')
 
 @app.route('/image/<string:image_id>')
