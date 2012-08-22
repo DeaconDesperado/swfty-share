@@ -4,9 +4,13 @@ $(function(){
     var lat;
     var $story_list = $('#swft-collection ul');
 		var listView = new infinity.ListView($story_list,{lazy:function(){
-			page++;
-			getList()
-		}});
+		
+		},
+				more: function(){
+					page++;
+					getList();
+				}
+		});
 
     function geoLocate(){
         navigator.geolocation.getCurrentPosition(getCoords,locationDenied)
@@ -36,6 +40,9 @@ $(function(){
 
     function buildList(d,s,jqXHR){
         markup = ''
+				if(d['stories'].length == 0){
+					listView.more = false;
+				}
         $.each(d['stories'],function(ind){
             story = d['stories'][ind];
 						var fileListMarkup = '';
